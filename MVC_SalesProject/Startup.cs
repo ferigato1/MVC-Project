@@ -9,6 +9,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using MVC_SalesProject.Data;
 
 namespace MVC_SalesProject
 {
@@ -33,6 +35,9 @@ namespace MVC_SalesProject
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            services.AddDbContext<MVC_SalesProjectContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("MVC_SalesProjectContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
