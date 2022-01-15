@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using MVC_SalesProject.Models;
 
-namespace MVC_SalesProject.Data
+
+namespace MVC_SalesProject.Models
 {
     public class MVC_SalesProjectContext : DbContext
     {

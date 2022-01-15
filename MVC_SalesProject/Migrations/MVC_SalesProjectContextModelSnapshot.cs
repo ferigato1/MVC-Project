@@ -4,6 +4,7 @@ using MVC_SalesProject.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using MVC_SalesProject.Models;
 
 namespace MVC_SalesProject.Migrations
 {
