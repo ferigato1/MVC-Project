@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MVC_SalesProject.Models;
+using MVC_SalesProject.Models.ViewModels;
 using MVC_SalesProject.Services;
 using System;
 using System.Collections.Generic;
@@ -11,10 +12,12 @@ namespace MVC_SalesProject.Controllers
     public class SellersController : Controller
     {
         private readonly SellerService _sellerService;
+        private readonly DepartmentService _departmentService;
 
-        public SellersController(SellerService sellerService)
+        public SellersController(SellerService sellerService, DepartmentService departmentService)
         {
-            this._sellerService = sellerService;
+            _sellerService = sellerService;
+            _departmentService = departmentService;
         }
 
         public IActionResult Index()
@@ -26,8 +29,11 @@ namespace MVC_SalesProject.Controllers
         
         public IActionResult Create()
         {
-            return View();
+            var departments = _departmentService.FindAll();
+            var viewModel = new SellerFormViewModel { Departments = departments };
+            return View(viewModel);
         }
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Create(Seller seller)
