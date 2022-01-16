@@ -119,7 +119,6 @@ namespace MVC_SalesProject.Controllers
             try
             {
                 _sellerService.Update(seller);
-
                 return RedirectToAction(nameof(Index));
             }
             catch (ApplicationException e)

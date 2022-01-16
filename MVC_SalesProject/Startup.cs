@@ -13,6 +13,8 @@ using Microsoft.EntityFrameworkCore;
 using MVC_SalesProject.Data;
 using MVC_SalesProject.Services;
 using MVC_SalesProject.Models;
+using System.Globalization;
+using Microsoft.AspNetCore.Localization;
 
 namespace MVC_SalesProject
 {
@@ -51,6 +53,17 @@ namespace MVC_SalesProject
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, SeedingService seedingService)
         {
+            // Setting locale for date and currency purposes
+            var enUS = new CultureInfo("en-US");
+            var localizationOptions = new RequestLocalizationOptions
+            {
+                DefaultRequestCulture = new RequestCulture(enUS),
+                SupportedCultures = new List<CultureInfo> { enUS },
+                SupportedUICultures = new List<CultureInfo> { enUS }
+            };
+
+            app.UseRequestLocalization(localizationOptions);
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
