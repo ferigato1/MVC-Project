@@ -16,8 +16,12 @@ namespace MVC_SalesProject.Models
         //Association Seller(*) -> Department(1)
         public Department Department { get; set; }
 
+        //Foreign key
+        public int DepartmentId { get; set; }
+
         //Association SalesRecord(*) -> Seller(1)
         public ICollection<SalesRecord> Sales { get; set; } = new List<SalesRecord>();
+
 
         public Seller()
         {
