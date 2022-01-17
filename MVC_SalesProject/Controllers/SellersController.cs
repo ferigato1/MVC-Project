@@ -40,6 +40,14 @@ namespace MVC_SalesProject.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create(Seller seller)
         {
+            //makes the validation work even if the JS is disabled on the browser
+            if (ModelState.IsValid)
+            {
+                var departments = _departmentService.FindAll();
+                var viewModel = new SellerFormViewModel { Seller = seller, Departments = departments };
+                return View(viewModel);
+            }
+
             _sellerService.Insert(seller);
 
             return RedirectToAction(nameof(Index));
@@ -111,6 +119,14 @@ namespace MVC_SalesProject.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Edit(int? id, Seller seller)
         {
+            //makes the validation work even if the JS is disabled on the browser
+            if (ModelState.IsValid)
+            {
+                var departments = _departmentService.FindAll();
+                var viewModel = new SellerFormViewModel { Seller = seller, Departments = departments };
+                return View(viewModel);
+            }
+
             if (id != seller.Id)
             {
                 return RedirectToAction(nameof(Error), new { message = "Id mismatch." });
